@@ -347,11 +347,12 @@ function showAddCardInput(listEl: Element, listId: string): void {
 
   input.addEventListener('blur', commit);
   input.addEventListener('keydown', (ev) => {
-    if (ev.key === 'Enter') commit();
-    if (ev.key === 'Escape') { input.value = ''; commit(); }
+    if (ev.key === 'Enter') { ev.preventDefault(); input.removeEventListener('blur', commit); commit(); }
+    if (ev.key === 'Escape') { input.value = ''; input.removeEventListener('blur', commit); commit(); }
   });
   confirmBtn.addEventListener('mousedown', (e) => {
     e.preventDefault();
+    input.removeEventListener('blur', commit);
     commit();
   });
 }
