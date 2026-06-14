@@ -1,0 +1,80 @@
+:root {
+  /* ── Landscape Greens ── */
+  --forest: #0D2E12;
+  --grass: #2E7D32;
+  --light-grass: #4CAF50;
+  --pale-green: #A5D6A7;
+  --mint-fresh: #1B8C3A;
+
+  /* ── Sky Blues ── */
+  --sky-light: #4FC3F7;
+  --sky: #0288D1;
+  --sky-deep: #01579B;
+  --atmospheric: #E1F5FE;
+
+  /* ── Warm Accents (Sunlight) ── */
+  --sun: #E65100;
+  --sun-warm: #EF6C00;
+  --sunset: #BF360C;
+
+  /* ── Paper / Content Backgrounds ── */
+  --paper: #E4EAE0;
+  --paper-warm: #DCE4D4;
+  --paper-dark: #C8D4C0;
+  --paper-darker: #B0C4A8;
+
+  /* ── Text Colors — WCAG AA minimum 4.5:1 on paper ── */
+  --text-bright: #0D2E12;
+  --text-body: #1A472A;
+  --text-muted: #2D5A36;
+  --text-on-dark: #E8F5E9;
+  --text-on-dark-muted: #C8E6C9;
+
+  /* ── Glass / Card Effects ── */
+  --glass-bg: rgba(255, 255, 252, 0.88);
+  --glass-bg-hover: rgba(255, 255, 255, 0.96);
+  --glass-border: rgba(46, 125, 50, 0.22);
+  --glass-shadow: rgba(13, 46, 18, 0.1);
+
+  /* ── Accent / Interactive ── */
+  --accent: #BF360C;
+  --accent-hover: #8B2500;
+  --accent-glow: rgba(191, 54, 12, 0.25);
+
+  /* ── LED / Status Colors ── */
+  --led-green: #1B8C3A;
+  --led-blue: #01579B;
+  --led-amber: #E65100;
+  --led-rainbow: linear-gradient(90deg, #BF360C, #E65100, #1B8C3A, #01579B);
+
+  /* ── Semantic ── */
+  --rose: #BF360C;
+  --mint: #1B8C3A;
+  --link: #01579B;
+  --link-hover: #0D47A1;
+
+  /* ── Fluid Typography Scale ── */
+  --text-xs: clamp(0.69rem, 0.6rem + 0.2vw, 0.75rem);
+  --text-sm: clamp(0.8rem, 0.7rem + 0.3vw, 0.88rem);
+  --text-base: clamp(0.95rem, 0.85rem + 0.35vw, 1.05rem);
+  --text-lg: clamp(1.2rem, 1rem + 0.6vw, 1.4rem);
+  --text-xl: clamp(1.5rem, 1.1rem + 1.2vw, 2rem);
+  --text-2xl: clamp(2rem, 1.4rem + 2.5vw, 3rem);
+  --text-3xl: clamp(2.5rem, 1.8rem + 4vw, 4.5rem);
+
+  /* ── Animation Durations ── */
+  --dur-fast: 0.15s;
+  --dur-base: 0.25s;
+  --dur-slow: 0.4s;
+  --dur-reveal: 0.6s;
+
+  /* ── Easing Curves ── */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* ── Glass Enhancements ── */
+  --glass-blur: 14px;
+  --glass-radius: 18px;
+  --glass-lift-shadow: 0 20px 48px rgba(13, 46, 18, 0.18);
+}

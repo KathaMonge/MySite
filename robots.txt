@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kathamonge.github.io/MySite/sitemap.xml

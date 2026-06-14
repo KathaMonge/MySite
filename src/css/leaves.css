@@ -1,0 +1,223 @@
+/* ── Decorative leaves as foreground elements across sections ── */
+:root {
+  --leaf-green: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 60'%3E%3Cpath d='M20 58 C8 42 2 22 20 2 C38 22 32 42 20 58Z' fill='%232E7D32'/%3E%3Cpath d='M20 58 L20 22' stroke='%232E7D32' stroke-width='1.2' fill='none'/%3E%3C/svg%3E");
+  --leaf-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 60'%3E%3Cpath d='M20 58 C8 42 2 22 20 2 C38 22 32 42 20 58Z' fill='%231A472A'/%3E%3Cpath d='M20 58 L20 22' stroke='%231A472A' stroke-width='1.2' fill='none'/%3E%3C/svg%3E");
+  --leaf-white: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 60'%3E%3Cpath d='M20 58 C8 42 2 22 20 2 C38 22 32 42 20 58Z' fill='%23FFFFFF'/%3E%3Cpath d='M20 58 L20 22' stroke='%23FFFFFF' stroke-width='1.2' fill='none'/%3E%3C/svg%3E");
+}
+
+@keyframes leaf-sway {
+  0%, 100% { transform: var(--leaf-from); }
+  50% { transform: var(--leaf-to); }
+}
+
+/* Ensure section content wrappers have position context for leaf positioning */
+.section-compact .mx-auto,
+.section-compact-sm .mx-auto {
+  position: relative;
+}
+
+/* ── Corner leaves on all sections ── */
+
+/* Odd sections: top-right green leaf */
+.section-compact:nth-child(odd)::before {
+  content: '';
+  position: absolute;
+  top: 4%;
+  right: 2%;
+  width: 42px;
+  height: 60px;
+  background-image: var(--leaf-green);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.28;
+  pointer-events: none;
+  z-index: 2;
+  --leaf-from: rotate(12deg) translateY(0);
+  --leaf-to: rotate(16deg) translateY(-4px);
+  animation: leaf-sway 6s ease-in-out infinite;
+}
+
+/* Even sections & compact-sm: top-left dark leaf */
+.section-compact:nth-child(even)::before,
+.section-compact-sm::before {
+  content: '';
+  position: absolute;
+  top: 4%;
+  left: 2%;
+  width: 40px;
+  height: 58px;
+  background-image: var(--leaf-dark);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.26;
+  pointer-events: none;
+  z-index: 2;
+  --leaf-from: rotate(-24deg) scaleX(-1) translateY(0);
+  --leaf-to: rotate(-20deg) scaleX(-1) translateY(-4px);
+  animation: leaf-sway 7s ease-in-out infinite;
+  animation-delay: -1.5s;
+}
+
+/* All section-compact: bottom-right dark leaf */
+.section-compact::after {
+  content: '';
+  position: absolute;
+  bottom: 3%;
+  right: 2%;
+  width: 50px;
+  height: 72px;
+  background-image: var(--leaf-dark);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 2;
+  --leaf-from: rotate(18deg) translateY(0);
+  --leaf-to: rotate(22deg) translateY(-5px);
+  animation: leaf-sway 8s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+/* compact-sm: bottom-left green leaf */
+.section-compact-sm::after {
+  content: '';
+  position: absolute;
+  bottom: 2%;
+  left: 2%;
+  width: 36px;
+  height: 52px;
+  background-image: var(--leaf-green);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.24;
+  pointer-events: none;
+  z-index: 2;
+  --leaf-from: rotate(-32deg) scaleX(-1) translateY(0);
+  --leaf-to: rotate(-27deg) scaleX(-1) translateY(-4px);
+  animation: leaf-sway 6.5s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+/* ── Foreground leaves overlapping cards/windows ── */
+
+/* About section card: top-right leaf overlap */
+#about .glass-card::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 44px;
+  height: 64px;
+  background-image: var(--leaf-green);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.30;
+  pointer-events: none;
+  z-index: 3;
+  --leaf-from: rotate(28deg) translateY(0);
+  --leaf-to: rotate(34deg) translateY(-5px);
+  animation: leaf-sway 7s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+/* Projects section: leaf mid-right over timeline grid */
+.section-compact:has(.timeline-grid) .mx-auto::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  right: -14px;
+  width: 34px;
+  height: 50px;
+  background-image: var(--leaf-dark);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.22;
+  pointer-events: none;
+  z-index: 3;
+  --leaf-from: rotate(20deg) translateY(0);
+  --leaf-to: rotate(24deg) translateY(-4px);
+  animation: leaf-sway 7s ease-in-out infinite;
+  animation-delay: -1.5s;
+}
+
+/* Middle project card: small leaf bottom-right (via section wrapper) */
+.section-compact:has(.timeline-grid) .mx-auto {
+  z-index: 1;
+}
+.section-compact:has(.timeline-grid) .mx-auto::after {
+  content: '';
+  position: absolute;
+  bottom: 6%;
+  right: 4%;
+  width: 32px;
+  height: 46px;
+  background-image: var(--leaf-dark);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.20;
+  pointer-events: none;
+  z-index: 3;
+  --leaf-from: rotate(22deg) translateY(0);
+  --leaf-to: rotate(26deg) translateY(-4px);
+  animation: leaf-sway 6s ease-in-out infinite;
+  animation-delay: -0.5s;
+}
+
+/* Trello board section: white leaf over board */
+.section-compact:has(.trello-board)::after,
+.section-compact-sm:has(.trello-board)::after {
+  width: 54px;
+  height: 78px;
+  bottom: 5%;
+  right: 1%;
+  opacity: 0.16;
+  background-image: var(--leaf-white);
+  --leaf-from: rotate(22deg) translateY(0);
+  --leaf-to: rotate(26deg) translateY(-6px);
+  animation: leaf-sway 9s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+/* Skills section: extra leaf mid-right overlapping badges */
+.section-compact:has(.badge-row)::before {
+  top: 35%;
+  right: 0%;
+  width: 34px;
+  height: 50px;
+  opacity: 0.22;
+  z-index: 3;
+  --leaf-from: rotate(18deg) scaleX(-1) translateY(0);
+  --leaf-to: rotate(22deg) scaleX(-1) translateY(-4px);
+  animation: leaf-sway 7.5s ease-in-out infinite;
+  animation-delay: -3.5s;
+}
+
+@media (max-width: 768px) {
+  .section-compact::before,
+  .section-compact-sm::before,
+  .section-compact::after,
+  .section-compact-sm::after {
+    opacity: 0.14;
+    width: 28px;
+    height: 40px;
+  }
+  .section-compact .mx-auto::before,
+  .section-compact .mx-auto::after,
+  .section-compact-sm .mx-auto::before,
+  .section-compact-sm .mx-auto::after {
+    display: none;
+  }
+  .glass-card::before,
+  .glass-card::after {
+    opacity: 0.12;
+    width: 22px;
+    height: 32px;
+  }
+}

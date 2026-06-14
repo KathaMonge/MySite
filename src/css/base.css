@@ -1,0 +1,137 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  overflow-x: hidden;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: var(--text-body);
+  line-height: 1.65;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 90% 35% at 50% 0%, rgba(13, 46, 18, 0.3) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 40% at 0% 50%, rgba(1, 87, 155, 0.045) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 50%, rgba(46, 125, 50, 0.055) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 20% at 50% 100%, rgba(230, 81, 0, 0.035) 0%, transparent 55%),
+    repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(13, 46, 18, 0.012) 23px, rgba(13, 46, 18, 0.012) 24px),
+    var(--paper);
+  pointer-events: none;
+  background-attachment: fixed;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(circle at 50% 50%, rgba(13, 46, 18, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+#main {
+  padding-top: 100dvh;
+}
+
+.center-text {
+  text-align: center;
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.max-w-sm {
+  max-width: 700px;
+}
+.max-w-md {
+  max-width: 900px;
+}
+.max-w-lg {
+  max-width: 1100px;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+::selection {
+  background: var(--light-grass);
+  color: var(--forest);
+}
+
+:focus-visible {
+  outline: 2px solid var(--light-grass);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--paper-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--light-grass);
+  border-radius: 4px;
+  transition: background var(--dur-fast) ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--grass);
+}
+
+/* ── Scroll Progress Bar ── */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--light-grass), var(--sky));
+  z-index: 9999;
+  width: 0%;
+  transition: width 0.05s linear;
+  pointer-events: none;
+  will-change: width;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

@@ -1,0 +1,176 @@
+/* ── Simplified Oscilloscope ── */
+.scope-bezel {
+  position: relative;
+  border: 2px solid rgba(76, 175, 80, 0.25);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0D1F12;
+}
+
+#oscilloscope {
+  width: 100%;
+  height: 300px;
+  display: block;
+  cursor: crosshair;
+  position: relative;
+  z-index: 1;
+}
+
+.scope-scanlines {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+  opacity: 0.3;
+  border-radius: 10px;
+}
+
+.scope-live-indicator {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: #00C853;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00C853;
+  box-shadow: 0 0 8px #00C853;
+  animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.scope-controls {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 0.5rem 0.4rem;
+}
+
+.scope-btn {
+  padding: 0.35rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  background: rgba(76, 175, 80, 0.08);
+  color: #1B5E20;
+  font-family: monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  letter-spacing: 1px;
+}
+
+.scope-btn:hover {
+  background: rgba(76, 175, 80, 0.18);
+  border-color: rgba(76, 175, 80, 0.5);
+}
+
+.scope-btn.active {
+  border-color: #00C853;
+  color: #00C853;
+  background: rgba(0, 200, 83, 0.1);
+}
+
+.scope-run-btn.active {
+  border-color: #00C853;
+  color: #00C853;
+}
+
+.scope-run-btn.stopped {
+  border-color: #FF8F00;
+  color: #FF8F00;
+  background: rgba(255, 143, 0, 0.1);
+}
+
+.scope-knob {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.3rem 0.8rem;
+  border-radius: 10px;
+  background: rgba(76, 175, 80, 0.06);
+  border: 1px solid rgba(76, 175, 80, 0.15);
+  font-size: 0.72rem;
+  font-family: monospace;
+  color: #1B5E20;
+}
+
+.scope-knob label {
+  color: #2D5A36;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.scope-knob .knob-val {
+  color: #00C853;
+  min-width: 2.5em;
+  text-align: center;
+  font-weight: 700;
+}
+
+.scope-knob input[type='range'] {
+  width: 70px;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(76, 175, 80, 0.25);
+  border-radius: 2px;
+  outline: none;
+}
+
+.scope-knob input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #00C853;
+  box-shadow: 0 0 6px rgba(0, 200, 83, 0.5);
+  cursor: pointer;
+}
+
+.scope-knob input[type='range']::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #00C853;
+  box-shadow: 0 0 6px rgba(0, 200, 83, 0.5);
+  cursor: pointer;
+  border: none;
+}
+
+.scope-info-text {
+  text-align: center;
+  font-size: 0.78rem;
+  color: #2D5A36;
+  font-family: monospace;
+  padding: 0.4rem 0.5rem 0.6rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.led-border {
+  animation: borderGlow 4s ease-in-out infinite;
+}

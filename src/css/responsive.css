@@ -1,0 +1,29 @@
+@media (max-width: 768px) {
+  .section-compact {
+    padding: 2.5rem 1rem;
+  }
+  .section-compact-sm {
+    padding: 1.5rem 1rem;
+  }
+  .timeline-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .stats-row img {
+    height: 120px;
+  }
+  .glass-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .timeline-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .timeline-grid > *:last-child {
+    grid-column: 1 / -1;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,245 @@
+#snake-canvas {
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 1 / 1;
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+  image-rendering: pixelated;
+  background: var(--forest);
+}
+
+.snake-controls {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.snake-fullscreen {
+  display: none;
+}
+.snake-fullscreen.visible {
+  display: inline-flex;
+}
+
+.snake-score {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0.3rem 0.9rem;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  background: rgba(26, 60, 26, 0.5);
+  color: var(--sun);
+  position: relative;
+}
+
+.snake-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(26, 60, 26, 0.85);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: opacity 0.4s var(--ease-smooth);
+}
+
+.snake-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.snake-play-btn {
+  padding: 0.8rem 2rem;
+  border-radius: 12px;
+  border: 2px solid var(--sun);
+  background: transparent;
+  color: var(--sun);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s var(--ease-spring);
+  box-shadow: 0 0 20px rgba(255, 143, 0, 0.25);
+  will-change: transform;
+}
+
+.snake-play-btn:hover {
+  background: rgba(255, 143, 0, 0.12);
+  transform: scale(1.08);
+}
+
+.snake-play-btn:active {
+  transform: scale(0.96);
+}
+
+.snake-score.led-ring::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 18px;
+  border: 2px solid var(--sun);
+  animation: ringPulse 1.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ── Leaderboard ── */
+.leaderboard {
+  margin-top: 0.8rem;
+  padding: 0.6rem 0.8rem;
+  border-top: 1px solid rgba(76, 175, 80, 0.15);
+}
+
+.leaderboard-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.lb-icon { font-size: 1rem; }
+
+.lb-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-bright);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.leaderboard-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: monospace;
+  font-size: 0.68rem;
+}
+
+.lb-empty {
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  padding: 0.3rem 0;
+  font-style: italic;
+}
+
+.lb-row {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr 3.5rem;
+  gap: 4px;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  background: rgba(26, 60, 26, 0.3);
+  align-items: center;
+}
+
+.lb-row:hover {
+  background: rgba(76, 175, 80, 0.1);
+}
+
+.lb-rank {
+  color: var(--text-muted);
+  text-align: center;
+  font-weight: 600;
+}
+
+.lb-row:nth-child(1) .lb-rank { color: #FFB300; }
+.lb-row:nth-child(2) .lb-rank { color: #9E9E9E; }
+.lb-row:nth-child(3) .lb-rank { color: #CD7F32; }
+
+.lb-name {
+  color: var(--text-body);
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lb-score {
+  color: var(--sun);
+  text-align: right;
+  font-weight: 600;
+}
+
+/* ── Name dialog ── */
+.name-dialog {
+  background: var(--forest);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  border-radius: 16px;
+  padding: 1.5rem;
+  max-width: 320px;
+  width: 90vw;
+  color: var(--text-body);
+}
+
+.name-dialog::backdrop {
+  background: rgba(26, 60, 26, 0.8);
+  backdrop-filter: blur(4px);
+}
+
+.name-dialog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.name-dialog-title {
+  font-size: 1rem;
+  color: var(--text-bright);
+  margin: 0;
+  text-align: center;
+}
+
+.name-dialog-score {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.name-dialog-score-val {
+  color: var(--sun);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.name-dialog-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.name-dialog-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-family: monospace;
+}
+
+.name-dialog-input {
+  background: rgba(26, 60, 26, 0.8);
+  border: 1px solid rgba(76, 175, 80, 0.25);
+  border-radius: 8px;
+  padding: 0.5rem 0.7rem;
+  color: var(--text-bright);
+  font-family: monospace;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.name-dialog-input:focus {
+  border-color: var(--sun);
+  box-shadow: 0 0 10px rgba(255, 143, 0, 0.15);
+}
+
+.name-dialog-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.3rem;
+}

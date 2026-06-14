@@ -1,0 +1,445 @@
+﻿<!doctype html>
+<html lang="en" data-theme="neon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Katha — Mechatronics Engineering student at TEC Costa Rica. Hardware × software — circuits, code, control systems, and strawberries 🍓"
+    />
+    <title>Katha · Mechatronics Portfolio</title>
+
+    <link rel="canonical" href="https://kathamonge.github.io/MySite/" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 87Q30 72 16 50 10 35 18 22 26 10 50 10 74 10 82 22 90 35 84 50 70 72 50 87Z' fill='%23FF4365'/%3E%3Cpath d='M50 10Q40 0 28 4 38 8 50 10 62 8 72 4 60 0 50 10Z' fill='%2300ff88'/%3E%3Cpath d='M50 14Q44 8 38 10 44 12 50 14 56 12 62 10 56 8 50 14Z' fill='%2300ff88'/%3E%3C/svg%3E"
+    />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Katha · Mechatronics Portfolio" />
+    <meta
+      property="og:description"
+      content="Mechatronics Engineering student at TEC Costa Rica. Hardware × software — circuits, code, control systems, and strawberries 🍓"
+    />
+    <meta property="og:url" content="https://kathamonge.github.io/MySite/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://github.com/KathaMonge.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Katha · Mechatronics Portfolio" />
+    <meta
+      name="twitter:description"
+      content="Mechatronics Engineering student at TEC Costa Rica. Hardware × software."
+    />
+    <meta name="twitter:image" content="https://github.com/KathaMonge.png" />
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/DesvoSoft/Vitra@v1.6.0/dist/vitra.min.css"
+    />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Katha Monge",
+        "givenName": "Katha",
+        "jobTitle": "Mechatronics Engineering Student",
+        "url": "https://kathamonge.github.io/MySite/",
+        "sameAs": ["https://github.com/KathaMonge", "https://linkedin.com/in/katharinamonge"],
+        "alumniOf": "TEC Costa Rica",
+        "description": "Mechatronics Engineering student at TEC Costa Rica. Hardware × software — circuits, code, and control systems."
+      }
+    </script>
+  </head>
+  <body>
+    <div id="scroll-progress" aria-hidden="true"></div>
+    <canvas id="particles-canvas" aria-hidden="true"></canvas>
+    <div id="bg-scanner" aria-hidden="true"></div>
+
+    <!-- ═══════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════ -->
+    <main id="main">
+<section id="hero">
+        <div id="tiles"></div>
+        <div class="hero-leaf hero-leaf--right"></div>
+        <div class="hero-leaf hero-leaf--left"></div>
+        <div class="hero-leaf hero-leaf--top-right"></div>
+        <div class="hero-leaf hero-leaf--top-left"></div>
+        <div class="hero-leaf hero-leaf--mid"></div>
+        <div class="hero-leaf hero-leaf--bottom"></div>
+
+        <div class="hero-content">
+          <h1 class="hero-title">Welcome to my site ⚡</h1>
+
+          <div class="hero-terminal">
+            <span class="prompt">$</span> whoami
+            <span class="output">→ katha@mechatronics:~/portfolio</span>
+          </div>
+
+          <p class="hero-subtitle"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 18'%3E%3Crect width='30' height='18' fill='%230028b4'/%3E%3Crect y='3' width='30' height='3' fill='%23fff'/%3E%3Crect y='6' width='30' height='6' fill='%23ce1126'/%3E%3Crect y='12' width='30' height='3' fill='%23fff'/%3E%3C/svg%3E" alt="CR" style="height:1.15em;vertical-align:middle;filter:drop-shadow(0 1px 6px rgba(0,0,0,0.4))"></p>
+
+          <p class="hero-tagline">MECHATRONICS · CODE · NATURE</p>
+
+          <button
+            class="btn-primary"
+            onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })"
+            aria-label="Scroll to featured projects"
+          >
+            Explore My Work
+          </button>
+        </div>
+      </section>
+      <!-- ═══════════════════════════════════════
+       MUSIC
+       ═══════════════════════════════════════ -->
+      <section class="section-compact-sm" id="music">
+        <div class="mx-auto" style="max-width: 620px">
+          <div class="section-header">
+<h2>Music Pulse</h2>
+          </div>
+
+<div class="glass-card vitra-reveal vitra-reveal-up" style="padding: 1.2rem">
+            <canvas
+              id="equalizer"
+              role="img"
+              aria-label="Music visualizer with animated neon bars"
+            ></canvas>
+            <div class="audio-wrap" style="margin-top: 0.8rem">
+              <audio
+                class="neon-audio"
+                controls
+                preload="none"
+                aria-label="Music player"
+              >
+                <source src="assets/music/demo.mp3" type="audio/mpeg">
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+              </audio>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+       ABOUT
+       ═══════════════════════════════════════ -->
+      <section class="section-compact" id="about">
+        <div class="mx-auto max-w-sm">
+          <div class="section-header">
+<h2>The Core</h2>
+          </div>
+
+          <div class="glass-card vitra-reveal vitra-reveal-up center-text">
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-bright)">
+              I'm <strong style="color: var(--rose)">Katha</strong> — a Mechatronics Engineering
+              student at <strong style="color: var(--mint)">TEC Costa Rica</strong> 🇨🇷
+            </p>
+            <p
+              style="
+                font-size: 0.92rem;
+                line-height: 1.7;
+                color: var(--text-body);
+                margin-top: 0.8rem;
+              "
+            >
+              I build where hardware meets software. Circuits, code, control systems — if it
+              connects the physical world to the digital, I'm in.
+</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+       TOOLBOX
+       ═══════════════════════════════════════ -->
+      <section class="section-compact-sm">
+        <div class="mx-auto max-w-sm">
+          <div class="section-header">
+<h2>Skills &amp; Tools</h2>
+          </div>
+
+          <div class="badge-row vitra-reveal vitra-reveal-up">
+            <img loading="lazy"
+              src="https://img.shields.io/badge/Python-FF4365?style=flat-square&logo=python&logoColor=white"
+              alt="Python"
+            />
+            <img loading="lazy"
+              src="https://img.shields.io/badge/C++-0d0d1a?style=flat-square&logo=cplusplus&logoColor=FF4365"
+              alt="C++"
+            />
+            <img loading="lazy"
+              src="https://img.shields.io/badge/Linux-0d0d1a?style=flat-square&logo=linux&logoColor=00ff88"
+              alt="Linux"
+            />
+            <img loading="lazy"
+              src="https://img.shields.io/badge/MATLAB-FF4365?style=flat-square&logo=mathworks&logoColor=white"
+              alt="MATLAB"
+            />
+            <img loading="lazy"
+              src="https://img.shields.io/badge/Git-0d0d1a?style=flat-square&logo=git&logoColor=FF4365"
+              alt="Git"
+            />
+            <img loading="lazy"
+              src="https://img.shields.io/badge/Embedded-0d0d1a?style=flat-square&logo=raspberrypi&logoColor=00ff88"
+              alt="Embedded"
+            />
+            <img loading="lazy"
+              src="https://img.shields.io/badge/Robotics-FF4365?style=flat-square&logo=autodesk&logoColor=white"
+              alt="Robotics"
+            />
+            <img loading="lazy"
+              src="https://img.shields.io/badge/Control-0d0d1a?style=flat-square&logo=addthis&logoColor=FF4365"
+              alt="Control"
+            />
+            <img loading="lazy"
+              src="https://img.shields.io/badge/HTML5-FF4365?style=flat-square&logo=html5&logoColor=white"
+              alt="HTML5"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+        TRELLO BOARD
+        ═══════════════════════════════════════ -->
+      <section class="section-compact-sm" id="trello">
+        <div class="mx-auto" style="max-width: 1100px">
+          <div class="section-header">
+<h2>Project Board</h2>
+          </div>
+          <div class="glass-card vitra-reveal vitra-reveal-up trello-board-wrap" style="padding: 1.5rem">
+            <div class="trello-actions">
+              <button class="trello-action-btn" id="trello-export">⬇ Export Backup</button>
+              <button class="trello-action-btn" id="trello-import">⬆ Import Backup</button>
+              <input type="file" id="trello-import-input" accept=".json" style="display:none">
+            </div>
+            <div id="trello-board-container" class="trello-board"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+        PROJECTS
+        ═══════════════════════════════════════ -->
+      <section class="section-compact" id="projects">
+        <div class="mx-auto max-w-lg">
+          <div class="section-header">
+<h2>Featured Work</h2>
+          </div>
+
+          <div class="timeline-grid vitra-reveal vitra-reveal-up">
+            <div class="glass-card coyotes-card" style="padding: 1.5rem">
+              <div class="tl-icon">🐺</div>
+              <h3 style="color: var(--rose)">CoyotesCR</h3>
+              <p>
+                Investigación sobre el coyote (<em>Canis latrans</em>) en Costa Rica. Seguimiento
+                poblacional, análisis de hábitat y visualización de datos.
+              </p>
+              <div style="margin-top: 1rem; text-align: center">
+                <a href="https://kathamonge.github.io/CoyotesCR/" target="_blank" rel="noopener" class="coyotes-btn vitra-ripple">Visit Live Site →</a>
+              </div>
+            </div>
+
+            <div class="glass-card" style="padding: 1.5rem">
+              <div class="tl-icon">♟️</div>
+              <h3 style="color: var(--mint)">Python-KChess</h3>
+              <p>
+                Chess GUI built with PySimpleGUI and python-chess. Full move validation and PGN export.
+              </p>
+              <div style="margin-top: 1rem; text-align: center">
+                <a href="https://github.com/KathaMonge/Python-KChess" target="_blank" rel="noopener" class="gh-btn vitra-ripple">View on GitHub →</a>
+              </div>
+            </div>
+
+            <div class="glass-card" style="padding: 1.5rem">
+              <div class="tl-icon">🛡️</div>
+              <h3 style="color: #4488ff">Sentinel</h3>
+              <p>
+                Local intrusion detection system for Windows. Monitors network traffic, detects
+                suspicious patterns, and alerts on unauthorized access.
+              </p>
+              <div style="margin-top: 1rem; text-align: center">
+                <a href="https://github.com/KathaMonge/Sentinel" target="_blank" rel="noopener" class="gh-btn vitra-ripple">View on GitHub →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════
+        OSCILLOSCOPE
+        ═══════════════════════════════════════ -->
+      <section class="section-compact-sm" id="scope-section">
+        <div class="mx-auto" style="max-width: 800px">
+          <div class="section-header">
+<h2>Signal Lab</h2>
+          </div>
+
+          <div class="glass-card led-border vitra-reveal vitra-reveal-up" style="padding: 0.8rem">
+            <div class="scope-bezel">
+              <canvas
+                id="oscilloscope"
+                role="img"
+                aria-label="Oscilloscopio didactico. Muestra ondas sinusoidales, cuadradas y diente de sierra."
+              ></canvas>
+              <div class="scope-scanlines" aria-hidden="true"></div>
+              <div class="scope-live-indicator">
+                <span id="scope-live-dot" class="live-dot"></span>
+                <span>CH1</span>
+              </div>
+            </div>
+
+            <div class="scope-controls">
+              <button class="scope-btn active" id="scope-wave-btn">SINE</button>
+              <button class="scope-btn scope-run-btn active" id="scope-run">&#9679; RUN</button>
+            </div>
+
+            <div class="scope-controls">
+              <div class="scope-knob">
+                <label>Freq</label>
+                <input type="range" id="scope-freq" min="1" max="50" value="10" aria-label="Frecuencia" />
+                <span class="knob-val" id="scope-freq-val">10</span>
+              </div>
+              <div class="scope-knob">
+                <label>Amp</label>
+                <input type="range" id="scope-amp" min="10" max="80" value="40" aria-label="Amplitud" />
+                <span class="knob-val" id="scope-amp-val">40</span>
+              </div>
+            </div>
+
+            <p class="scope-info-text" id="scope-info-text">
+              Onda: y(t) = A · sin(2πft). Ajusta freq y amp con los controles.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      
+      <!-- ═══════════════════════════════════════
+       SNAKE GAME
+       ═══════════════════════════════════════ -->
+      <section class="section-compact">
+        <div class="mx-auto" style="max-width: 580px">
+          <div class="section-header">
+<h2>Commit Harvester</h2>
+          </div>
+
+          <div
+            class="glass-card vitra-reveal vitra-reveal-up center-text"
+            style="padding: 1.2rem"
+            id="snake-card"
+          >
+            <div style="position: relative">
+              <canvas
+                id="snake-canvas"
+                width="500"
+                height="500"
+                role="img"
+                aria-label="Snake game. Guide the strawberry head to collect commits. Use arrow keys or swipe to change direction."
+              ></canvas>
+              <div id="snake-overlay" class="snake-overlay">
+                <button id="snake-play-btn" class="snake-play-btn">▶ Play</button>
+              </div>
+            </div>
+            <div class="snake-controls">
+              <span class="snake-score led-ring" id="snake-score">🍓 0</span>
+              <button id="snake-restart" class="btn-sm">↻ Restart</button>
+              <button id="snake-fullscreen" class="btn-sm snake-fullscreen visible">
+                ⛶ Fullscreen
+              </button>
+            </div>
+
+            <!-- Leaderboard -->
+            <div class="leaderboard" id="leaderboard">
+              <div class="leaderboard-header">
+                <span class="lb-icon">🏆</span>
+                <span class="lb-title">Global Rankings</span>
+              </div>
+              <div class="leaderboard-entries" id="leaderboard-entries">
+                <span class="lb-empty">Play a game to see the rankings!</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Name prompt dialog -->
+          <dialog id="name-dialog" class="name-dialog">
+            <form method="dialog" class="name-dialog-form">
+              <h3 class="name-dialog-title">🏆 New High Score!</h3>
+              <p class="name-dialog-score">
+                Score: <span id="dialog-score" class="name-dialog-score-val">0</span>
+              </p>
+              <div class="name-dialog-field">
+                <label for="name-input" class="name-dialog-label">Enter your name:</label>
+                <input
+                  type="text"
+                  id="name-input"
+                  class="name-dialog-input"
+                  maxlength="20"
+                  minlength="1"
+                  required
+                  placeholder="Nickname"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="name-dialog-actions">
+                <button type="submit" id="name-submit" class="btn-sm">Submit</button>
+                <button type="button" id="name-skip" class="btn-sm" style="opacity: 0.6">Skip</button>
+              </div>
+            </form>
+          </dialog>
+        </div>
+      </section>
+    </main>
+
+    <!-- ═══════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════ -->
+<footer>
+      <div class="mx-auto center-text" style="max-width: 620px">
+        <p class="footer-credit">
+          <span class="footer-prompt">❯</span>
+          <span class="footer-line"><strong>KathaMonge</strong> © <span id="footer-year"></span></span>
+        </p>
+        <div class="footer-links">
+          <a href="mailto:katharinamonge28@gmail.com" data-vitra-tooltip="Send an email" data-vitra-tooltip-position="top"
+            ><img
+              src="https://img.shields.io/badge/Email-FF4365?style=flat-square&logo=gmail&logoColor=white"
+              alt="Email"
+          /></a>
+          <a href="https://github.com/KathaMonge" data-vitra-tooltip="Visit GitHub" data-vitra-tooltip-position="top"
+            ><img
+              src="https://img.shields.io/badge/GitHub-0d0d1a?style=flat-square&logo=github&logoColor=00ff88"
+              alt="GitHub"
+          /></a>
+          <a href="https://linkedin.com/in/katharinamonge" data-vitra-tooltip="View LinkedIn" data-vitra-tooltip-position="top"
+            ><img
+              src="https://img.shields.io/badge/LinkedIn-FF4365?style=flat-square&logo=linkedin&logoColor=white"
+              alt="LinkedIn"
+          /></a>
+        </div>
+        <p class="footer-credit" style="margin-top: 0.6rem">
+          <span class="footer-prompt">❯</span>
+          <span class="footer-line"><span class="footer-str">"MECHATRONICS · CODE · NATURE"</span> <span class="footer-muted">— built with</span> <a href="https://desvosoft.github.io/Vitra/" target="_blank" rel="noopener" class="footer-vitra">Vitra CSS</a><span class="footer-cursor">▎</span></span>
+        </p>
+      </div>
+    </footer>
+    <button
+      class="back-to-top"
+      id="back-to-top"
+      aria-label="Back to top"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    >
+      ↑
+    </button>
+
+    <script
+      src="https://cdn.jsdelivr.net/gh/DesvoSoft/Vitra@v1.6.0/dist/vitra.min.js"
+      fetchpriority="low"
+    ></script>
+    <script type="module" src="/src/ts/main.ts"></script>
+  </body>
+</html>
