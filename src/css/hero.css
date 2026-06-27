@@ -1,8 +1,4 @@
 /* ── Hero — fixed overlay that slides out to reveal content ── */
-html {
-  scroll-behavior: smooth;
-}
-
 #hero {
   position: fixed;
   top: 0;

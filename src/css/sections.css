@@ -366,18 +366,3 @@ footer::before {
   margin-left: 0.1rem;
 }
 
-@media (max-width: 768px) {
-  .section-compact { padding: 3.5rem 1rem; }
-  .section-compact-sm { padding: 3rem 1rem; }
-  .timeline-grid { grid-template-columns: 1fr; gap: 1.2rem; }
-  .glass-card { padding: 1.75rem; }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .timeline-grid { grid-template-columns: 1fr 1fr; }
-  .timeline-grid > *:last-child {
-    grid-column: 1 / -1;
-    max-width: 520px;
-    margin: 0 auto;
-  }
-}
