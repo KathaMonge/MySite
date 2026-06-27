@@ -77,4 +77,14 @@
   --glass-blur: 14px;
   --glass-radius: 18px;
   --glass-lift-shadow: 0 20px 48px rgba(13, 46, 18, 0.18);
+
+  /* ── Hero gradient stops (deep forest, darkest → lightest) ── */
+  --hero-bg-0: #091808;
+  --hero-bg-1: #162f16;
+  --hero-bg-2: #234e23;
+  --hero-bg-3: #2e6e30;
+
+  /* ── Hero terminal accent colors ── */
+  --hero-prompt: #FFAB40;
+  --hero-output: #80D8FF;
 }

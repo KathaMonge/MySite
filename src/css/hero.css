@@ -14,10 +14,10 @@
   will-change: transform, opacity;
   background: linear-gradient(
     135deg,
-    #091808 0%,
-    #162f16 30%,
-    #234e23 60%,
-    #2e6e30 100%
+    var(--hero-bg-0) 0%,
+    var(--hero-bg-1) 30%,
+    var(--hero-bg-2) 60%,
+    var(--hero-bg-3) 100%
   );
 }
 
@@ -100,7 +100,7 @@
   left: 0;
   right: 0;
   height: 100px;
-  background: linear-gradient(to bottom, transparent 30%, rgba(228, 234, 224, 1) 100%);
+  background: linear-gradient(to bottom, transparent 30%, var(--paper) 100%);
   pointer-events: none;
   z-index: 1;
 }
@@ -256,13 +256,13 @@
 }
 
 .hero-terminal .prompt {
-  color: #FFAB40;
+  color: var(--hero-prompt);
   margin-right: 0.5rem;
   font-weight: 700;
 }
 
 .hero-terminal .output {
-  color: #80D8FF;
+  color: var(--hero-output);
   margin-left: 0.5rem;
 }
 
