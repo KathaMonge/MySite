@@ -6,6 +6,7 @@ import { init as initBackToTop } from './back-to-top';
 import { init as initTiles } from './tiles';
 import { init as initHeroAutoScroll } from './hero-auto-scroll';
 import { init as initTrello } from './trello-board';
+import { init as initNavbar } from './navbar';
 
 import '../css/main.css';
 
@@ -27,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initTiles();
   initHeroAutoScroll();
   initTrello();
+  initNavbar();
 });
 
 // Set footer year

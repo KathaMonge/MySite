@@ -1,0 +1,113 @@
+/* ── Navbar — hidden while hero is visible, slides in on scroll ── */
+#site-nav {
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
+  transition:
+    opacity 0.35s var(--ease-out-expo),
+    transform 0.35s var(--ease-out-expo);
+  z-index: 150;
+  /* Theme tokens for Vitra accent */
+  --vitra-color-accent-h: 145;
+  --vitra-color-accent-s: 63%;
+  --vitra-color-accent-l: 40%;
+  background: rgba(228, 234, 224, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(46, 125, 50, 0.14);
+  box-shadow: 0 2px 16px rgba(13, 46, 18, 0.06);
+}
+
+#site-nav.nav-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.vitra-navbar-brand {
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--text-bright);
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.vitra-navbar-brand:hover {
+  color: var(--mint);
+  text-decoration: none;
+}
+
+.vitra-navbar-link {
+  color: var(--text-body);
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-decoration: none;
+  padding: 0.25rem 0.1rem;
+  border-bottom: 2px solid transparent;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.vitra-navbar-link:hover {
+  color: var(--mint);
+  text-decoration: none;
+  border-bottom-color: var(--mint);
+}
+
+.vitra-navbar-link.active {
+  color: var(--mint);
+  border-bottom-color: var(--light-grass);
+}
+
+/* ── Drawer theme overrides ── */
+.vitra-drawer-glass {
+  background: rgba(228, 234, 224, 0.97);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border-left: 1px solid rgba(46, 125, 50, 0.14);
+}
+
+.vitra-drawer-title {
+  color: var(--text-bright);
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.92rem;
+  letter-spacing: 0.5px;
+}
+
+.vitra-drawer-close {
+  color: var(--text-muted);
+}
+
+.vitra-drawer-close:hover {
+  background: rgba(13, 46, 18, 0.08);
+  color: var(--text-bright);
+}
+
+.vitra-drawer-link {
+  color: var(--text-body);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  border-radius: 8px;
+  transition:
+    background 0.18s ease,
+    color 0.18s ease;
+}
+
+.vitra-drawer-link:hover {
+  color: var(--mint);
+  background: rgba(27, 140, 58, 0.08);
+  text-decoration: none;
+}
+
+.vitra-drawer-link.active {
+  color: var(--mint);
+  background: rgba(27, 140, 58, 0.1);
+}
+
+/* ── Burger color ── */
+.vitra-burger-line {
+  background: var(--text-bright);
+}

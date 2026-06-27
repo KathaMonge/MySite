@@ -37,7 +37,7 @@
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/DesvoSoft/Vitra@v1.6.0/dist/vitra.min.css"
+      href="https://cdn.jsdelivr.net/gh/DesvoSoft/Vitra@v1.7.2/dist/vitra.min.css"
     />
 
     <!-- JSON-LD Structured Data -->
@@ -59,6 +59,27 @@
     <div id="scroll-progress" aria-hidden="true"></div>
     <canvas id="particles-canvas" aria-hidden="true"></canvas>
     <div id="bg-scanner" aria-hidden="true"></div>
+
+    <!-- ═══════════════════════════════════════
+       NAVBAR
+       ═══════════════════════════════════════ -->
+    <nav class="vitra-navbar vitra-navbar-glass" id="site-nav" aria-label="Main navigation">
+      <a href="#" class="vitra-navbar-brand" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Katha</a>
+      <div class="vitra-navbar-links">
+        <a href="#about"        class="vitra-navbar-link" data-nav="about">About</a>
+        <a href="#skills"       class="vitra-navbar-link" data-nav="skills">Skills</a>
+        <a href="#projects"     class="vitra-navbar-link" data-nav="projects">Projects</a>
+        <a href="#scope-section"class="vitra-navbar-link" data-nav="scope-section">Signal Lab</a>
+        <a href="#snake-section"class="vitra-navbar-link" data-nav="snake-section">Snake</a>
+      </div>
+      <div class="vitra-navbar-actions">
+        <button class="vitra-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-drawer">
+          <span class="vitra-burger-line"></span>
+          <span class="vitra-burger-line"></span>
+          <span class="vitra-burger-line"></span>
+        </button>
+      </div>
+    </nav>
 
     <!-- ═══════════════════════════════════════
        HERO
@@ -156,7 +177,7 @@
       <!-- ═══════════════════════════════════════
        TOOLBOX
        ═══════════════════════════════════════ -->
-      <section class="section-compact-sm">
+      <section class="section-compact-sm" id="skills">
         <div class="mx-auto max-w-sm">
           <div class="section-header">
 <h2>Skills &amp; Tools</h2>
@@ -322,7 +343,7 @@
       <!-- ═══════════════════════════════════════
        SNAKE GAME
        ═══════════════════════════════════════ -->
-      <section class="section-compact">
+      <section class="section-compact" id="snake-section">
         <div class="mx-auto" style="max-width: 580px">
           <div class="section-header">
 <h2>Commit Harvester</h2>
@@ -436,8 +457,26 @@
       ↑
     </button>
 
+    <!-- ═══════════════════════════════════════
+       MOBILE DRAWER
+       ═══════════════════════════════════════ -->
+    <div class="vitra-drawer-overlay" id="nav-overlay" aria-hidden="true"></div>
+    <div class="vitra-drawer vitra-drawer-glass" id="nav-drawer" role="dialog" aria-label="Mobile navigation" aria-modal="true">
+      <div class="vitra-drawer-header">
+        <span class="vitra-drawer-title">Katha · Portfolio</span>
+        <button class="vitra-drawer-close" id="nav-drawer-close" aria-label="Close menu"></button>
+      </div>
+      <div class="vitra-drawer-body">
+        <a href="#about"         class="vitra-drawer-link" data-nav="about">About</a>
+        <a href="#skills"        class="vitra-drawer-link" data-nav="skills">Skills</a>
+        <a href="#projects"      class="vitra-drawer-link" data-nav="projects">Projects</a>
+        <a href="#scope-section" class="vitra-drawer-link" data-nav="scope-section">Signal Lab</a>
+        <a href="#snake-section" class="vitra-drawer-link" data-nav="snake-section">Snake</a>
+      </div>
+    </div>
+
     <script
-      src="https://cdn.jsdelivr.net/gh/DesvoSoft/Vitra@v1.6.0/dist/vitra.min.js"
+      src="https://cdn.jsdelivr.net/gh/DesvoSoft/Vitra@v1.7.2/dist/vitra.min.js"
       fetchpriority="low"
     ></script>
     <script type="module" src="/src/ts/main.ts"></script>
