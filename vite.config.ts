@@ -4,6 +4,6 @@ export default defineConfig({
   base: '/MySite/',
   build: {
     outDir: 'dist',
-    sourcemap: true,
+    sourcemap: false,
   },
 });
