@@ -121,10 +121,35 @@ function createCardElement(card: CardData, listId: string): HTMLElement {
   el.dataset.cardId = card.id;
   el.dataset.listId = listId;
 
+  el.setAttribute('tabindex', '0');
+  el.setAttribute('role', 'listitem');
+  el.setAttribute('aria-label', `Card: ${card.title}. Press Shift+Left or Shift+Right to move between lists.`);
+
   el.innerHTML = `
     <span class="trello-card-text">${escapeHtml(card.title)}</span>
-    <button class="trello-card-del" aria-label="Delete card">×</button>
+    <button class="trello-card-del" aria-label="Delete card ${escapeHtml(card.title)}">×</button>
   `;
+
+  el.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (!e.shiftKey || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight')) return;
+    e.preventDefault();
+    const srcIdx = findListIndex(listId);
+    if (srcIdx === -1) return;
+    const delta = e.key === 'ArrowRight' ? 1 : -1;
+    const dstIdx = srcIdx + delta;
+    if (dstIdx < 0 || dstIdx >= board.length) return;
+    const cardData = board[srcIdx].cards.find((c) => c.id === card.id);
+    if (!cardData) return;
+    board[srcIdx].cards = board[srcIdx].cards.filter((c) => c.id !== card.id);
+    board[dstIdx].cards.push(cardData);
+    saveBoard();
+    renderBoard();
+    // Restore focus to the moved card after re-render
+    requestAnimationFrame(() => {
+      const moved = containerEl!.querySelector<HTMLElement>(`[data-card-id="${card.id}"]`);
+      moved?.focus();
+    });
+  });
 
   el.addEventListener('dragstart', () => {
     draggedCard = el;
@@ -200,13 +225,16 @@ function createListElement(list: ListData): HTMLElement {
   el.className = 'trello-list';
   el.dataset.listId = list.id;
 
+  el.setAttribute('role', 'region');
+  el.setAttribute('aria-label', `List: ${list.title}`);
+
   el.innerHTML = `
     <div class="trello-list-header">
       <span class="trello-list-title">${escapeHtml(list.title)}</span>
-      <span class="trello-count">${list.cards.length}</span>
-      <button class="trello-list-del" aria-label="Delete list">×</button>
+      <span class="trello-count" aria-label="${list.cards.length} cards">${list.cards.length}</span>
+      <button class="trello-list-del" aria-label="Delete list ${escapeHtml(list.title)}">×</button>
     </div>
-    <div class="trello-cards"></div>
+    <div class="trello-cards" role="list"></div>
     <div class="trello-add-card">
       <button class="trello-add-card-btn">+ Add card</button>
     </div>
