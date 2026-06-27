@@ -160,8 +160,8 @@ section {
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.5px;
-  background: linear-gradient(135deg, #1B5E20, #2E7D32);
-  color: #fff;
+  background: linear-gradient(135deg, var(--forest-mid), var(--grass));
+  color: var(--text-on-dark);
   border: none;
   cursor: pointer;
   transition:

@@ -5,15 +5,17 @@ interface ScoreRow {
   score: number;
 }
 
-let client: ReturnType<typeof createClient> | null = null;
+type SupabaseClient = ReturnType<typeof createClient>;
 
-function getClient(): ReturnType<typeof createClient> {
+let client: SupabaseClient | null = null;
+
+function getClient(): SupabaseClient | null {
   if (!client) {
     const url = import.meta.env.VITE_SUPABASE_URL;
     const key = import.meta.env.VITE_SUPABASE_ANON_KEY;
     if (!url || !key) {
       console.warn('Supabase not configured — set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY');
-      return null as unknown as ReturnType<typeof createClient>;
+      return null;
     }
     client = createClient(url, key);
   }
@@ -28,14 +30,13 @@ export async function submitScore(name: string, score: number): Promise<void> {
     .from('leaderboard')
     .select('score')
     .eq('name', name)
-    .maybeSingle();
+    .maybeSingle<ScoreRow>();
 
-  const existingScore = existing ? (existing as { score: number }).score : null;
-  if (existingScore !== null && existingScore >= score) return;
+  if (existing !== null && existing.score >= score) return;
 
   await supabase
     .from('leaderboard')
-    .upsert({ name, score } as never, { onConflict: 'name' });
+    .upsert({ name, score }, { onConflict: 'name' });
 }
 
 export async function getTopScores(limit = 20): Promise<ScoreRow[]> {
@@ -46,7 +47,8 @@ export async function getTopScores(limit = 20): Promise<ScoreRow[]> {
     .from('leaderboard')
     .select('name, score')
     .order('score', { ascending: false })
-    .limit(limit) as { data: ScoreRow[] | null };
+    .limit(limit)
+    .returns<ScoreRow[]>();
 
-  return data || [];
+  return data ?? [];
 }

@@ -31,6 +31,11 @@ document.addEventListener('DOMContentLoaded', function () {
   initNavbar();
 });
 
+// Hero CTA — scroll to projects
+document.getElementById('hero-cta')?.addEventListener('click', () => {
+  document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+});
+
 // Set footer year
 const yearEl = document.getElementById('footer-year');
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
