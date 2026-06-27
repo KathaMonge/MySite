@@ -6,128 +6,109 @@ interface Particle {
   r: number;
   color: string;
   alpha: number;
-  life: number;
-  isLeaf: boolean;
-  leafEmoji: string;
-  rotation: number;
-  rotationSpeed: number;
 }
 
-const LEAF_EMOJIS = ['🌿', '🍃', '🍂', '🍁', '🌱'];
-
+// Cohesive forest palette — no vivid oranges or rainbow mix
 const COLORS = [
-  '#0288D1',
-  '#1565C0',
-  '#00C853',
-  '#2E7D32',
-  '#E65100',
-  '#FF8F00',
-  '#4FC3F7',
-  '#43A047',
-  '#FFAB40',
-  '#00E676',
-  '#40C4FF',
-  '#FF6D00',
+  '#2E7D32', // grass
+  '#1B5E20', // forest
+  '#43A047', // mid-green
+  '#0288D1', // sky
+  '#01579B', // sky-deep
 ];
+
+const COUNT = 48;
+const CONNECT_DIST = 115;
+const CONNECT_DIST_SQ = CONNECT_DIST * CONNECT_DIST;
+const REPEL_DIST = 110;
+const REPEL_DIST_SQ = REPEL_DIST * REPEL_DIST;
 
 export function init(): void {
   const c = document.getElementById('particles-canvas') as HTMLCanvasElement;
   if (!c) return;
   const ctx = c.getContext('2d')!;
   const particles: Particle[] = [];
-  const COUNT = 80;
-  const LEAF_COUNT = 15;
-  const CONNECT_DIST = 140;
-  const mouse = { x: -1000, y: -1000 };
+  const mouse = { x: -9999, y: -9999 };
 
   function resize(): void {
     c.width = window.innerWidth;
     c.height = window.innerHeight;
   }
-  window.addEventListener('resize', resize);
+  window.addEventListener('resize', resize, { passive: true });
   resize();
 
-  for (let i = 0; i < COUNT; i++) {
-    const isLeaf = i < LEAF_COUNT;
-    particles.push({
+  function makeParticle(initialY?: number): Particle {
+    return {
       x: Math.random() * c.width,
-      y: Math.random() * c.height,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: isLeaf ? -(0.005 + Math.random() * 0.02) : -(0.04 + Math.random() * 0.18),
-      r: isLeaf ? 7 + Math.random() * 4 : 2.5 + Math.random() * 4,
+      y: initialY !== undefined ? initialY : Math.random() * c.height,
+      vx: (Math.random() - 0.5) * 0.22,
+      vy: -(0.06 + Math.random() * 0.18),
+      r: 1.4 + Math.random() * 2.2,
       color: COLORS[Math.floor(Math.random() * COLORS.length)],
-      alpha: isLeaf ? 0.2 + Math.random() * 0.15 : 0.5 + Math.random() * 0.45,
-      life: Math.random(),
-      isLeaf,
-      leafEmoji: LEAF_EMOJIS[Math.floor(Math.random() * LEAF_EMOJIS.length)],
-      rotation: Math.random() * Math.PI * 2,
-      rotationSpeed: (Math.random() - 0.5) * 0.015,
-    });
+      alpha: 0.22 + Math.random() * 0.32,
+    };
+  }
+
+  for (let i = 0; i < COUNT; i++) {
+    particles.push(makeParticle());
   }
 
   function draw(): void {
     ctx.clearRect(0, 0, c.width, c.height);
 
-    for (let i = 0; i < COUNT; i++) {
-      const p = particles[i];
+    for (const p of particles) {
       p.x += p.vx;
       p.y += p.vy;
-      p.life += 0.001;
 
-      if (p.isLeaf) {
-        p.rotation += p.rotationSpeed;
+      // Wrap: when a particle leaves the top, respawn at bottom
+      if (p.y < -10) {
+        const fresh = makeParticle(c.height + 10);
+        p.x = fresh.x; p.y = fresh.y;
+        p.vx = fresh.vx; p.vy = fresh.vy;
+        p.r = fresh.r; p.alpha = fresh.alpha;
+        p.color = fresh.color;
+      }
+      if (p.x < -10) p.x = c.width + 10;
+      if (p.x > c.width + 10) p.x = -10;
+
+      // Mouse repulsion — squared distance, sqrt only for normalization
+      const mdx = p.x - mouse.x;
+      const mdy = p.y - mouse.y;
+      const mdSq = mdx * mdx + mdy * mdy;
+      if (mdSq < REPEL_DIST_SQ && mdSq > 0.1) {
+        const md = Math.sqrt(mdSq);
+        const force = ((REPEL_DIST - md) / REPEL_DIST) * 0.35;
+        p.x += (mdx / md) * force;
+        p.y += (mdy / md) * force;
       }
 
-      if (p.life > 1) p.life = 0;
-      if (p.x < -30) p.x = c.width + 30;
-      if (p.x > c.width + 30) p.x = -30;
-      if (p.y < -30) p.y = c.height + 30;
-      if (p.y > c.height + 30) p.y = -30;
+      // Draw dot — no shadowBlur, use layered circles for soft glow
+      ctx.globalAlpha = p.alpha * 0.25;
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r * 2.8, 0, Math.PI * 2);
+      ctx.fill();
 
-      const dx = p.x - mouse.x;
-      const dy = p.y - mouse.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 150) {
-        const force = (150 - dist) / 150;
-        p.x += (dx / dist) * force * 0.5;
-        p.y += (dy / dist) * force * 0.5;
-      }
-
-      if (p.isLeaf) {
-        ctx.save();
-        ctx.translate(p.x, p.y);
-        ctx.rotate(p.rotation);
-        ctx.globalAlpha = p.alpha;
-        ctx.font = `${p.r * 1.6}px system-ui`;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(p.leafEmoji, 0, 0);
-        ctx.restore();
-      } else {
-        ctx.globalAlpha = p.alpha;
-        ctx.fillStyle = p.color;
-        ctx.shadowColor = p.color;
-        ctx.shadowBlur = 12;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fill();
-      }
+      ctx.globalAlpha = p.alpha;
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
     }
 
-    ctx.shadowBlur = 0;
-
+    // Connection lines — quadratic alpha falloff from squared dist (no extra sqrt)
+    ctx.lineWidth = 0.55;
     for (let i = 0; i < COUNT; i++) {
       for (let j = i + 1; j < COUNT; j++) {
         const a = particles[i];
         const b = particles[j];
         const dx = a.x - b.x;
         const dy = a.y - b.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < CONNECT_DIST) {
-          const lineAlpha = (1 - dist / CONNECT_DIST) * 0.18;
-          ctx.globalAlpha = lineAlpha;
+        const dSq = dx * dx + dy * dy;
+        if (dSq < CONNECT_DIST_SQ) {
+          const t = 1 - dSq / CONNECT_DIST_SQ;
+          ctx.globalAlpha = t * t * 0.14;
           ctx.strokeStyle = a.color;
-          ctx.lineWidth = 0.8;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
@@ -143,6 +124,12 @@ export function init(): void {
   document.addEventListener('mousemove', (e: MouseEvent) => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
+  });
+
+  // Reset mouse when it leaves the window
+  document.addEventListener('mouseleave', () => {
+    mouse.x = -9999;
+    mouse.y = -9999;
   });
 
   draw();
