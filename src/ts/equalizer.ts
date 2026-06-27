@@ -61,21 +61,15 @@ export function init(): void {
     }
   }
 
+  // Only wire up trusted gestures — scroll and setTimeout are not trusted by Chrome's AudioContext policy
   document.addEventListener('click', tryConnectQuiet, { once: true });
-  document.addEventListener('scroll', tryConnectQuiet, { once: true });
   audio.addEventListener('play', () => {
-    if (!connected && audioCtx === null) {
-      tryConnectQuiet();
-    }
+    if (!connected && audioCtx === null) tryConnectQuiet();
   });
 
   audio.addEventListener('loadedmetadata', () => {
-    if (audioCtx && audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
+    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
   });
-
-  setTimeout(tryConnectQuiet, 300);
 
   function draw(): void {
     if (!running) return;
