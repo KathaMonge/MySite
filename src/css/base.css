@@ -4,6 +4,25 @@
   box-sizing: border-box;
 }
 
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10001;
+  padding: 0.5rem 1.2rem;
+  background: var(--forest);
+  color: var(--text-on-dark);
+  border-radius: 0 0 8px 0;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+.skip-link:focus-visible {
+  left: 0;
+  outline: 2px solid var(--light-grass);
+  outline-offset: 0;
+}
+
 html {
   scroll-behavior: smooth;
 }

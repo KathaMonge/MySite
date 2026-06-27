@@ -1,6 +1,7 @@
 ﻿import { createCanvasObserver, lerp, lerpHex } from './utils';
 
 export function init(): void {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const c = document.getElementById('equalizer') as HTMLCanvasElement;
   const audio = document.querySelector<HTMLAudioElement>('.neon-audio');
   if (!c || !audio) return;

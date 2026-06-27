@@ -1,0 +1,19 @@
+{
+  "name": "Katha · Mechatronics Portfolio",
+  "short_name": "Katha",
+  "description": "Mechatronics Engineering student at TEC Costa Rica. Hardware × software.",
+  "start_url": "/MySite/",
+  "id": "/MySite/",
+  "display": "standalone",
+  "background_color": "#091808",
+  "theme_color": "#0D2E12",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/MySite/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    }
+  ]
+}
