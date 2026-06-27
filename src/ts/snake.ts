@@ -1,4 +1,4 @@
-﻿import { submitScore, getTopScores } from './supabase';
+import { submitScore, getTopScores } from './supabase';
 
 interface Pos {
   x: number;
@@ -22,11 +22,12 @@ export function init(): void {
   const dialogScore = document.getElementById('dialog-score')!;
   const lbEntries = document.getElementById('leaderboard-entries')!;
 
-  const SZ = 25;
   const COLS = 20;
+  let sz = 25; // cell size — recalculated on resize
+
   let snake: Pos[] = [{ x: 10, y: 10 }];
   let dir: Pos = { x: 1, y: 0 };
-  const food: Pos = { x: 15, y: 15 };
+  let food: Pos = { x: 15, y: 15 };
   let nextDir: Pos = { x: 1, y: 0 };
   let score = 0;
   let over = false;
@@ -36,14 +37,33 @@ export function init(): void {
   let touchStartX = 0;
   let touchStartY = 0;
 
+  // ── Responsive canvas — match internal resolution to CSS display size ──
+  function resizeCanvas(): void {
+    const side = Math.min(c.offsetWidth, 500);
+    sz = Math.max(14, Math.floor(side / COLS));
+    c.width = sz * COLS;
+    c.height = sz * COLS;
+  }
+
+  const ro = new ResizeObserver(() => {
+    resizeCanvas();
+    if (!playing) drawInitial();
+    else draw();
+  });
+  ro.observe(c);
+  resizeCanvas();
+
   function randFood(): void {
-    food.x = Math.floor(Math.random() * COLS);
-    food.y = Math.floor(Math.random() * COLS);
-    for (let i = 0; i < snake.length; i++)
+    food = {
+      x: Math.floor(Math.random() * COLS),
+      y: Math.floor(Math.random() * COLS),
+    };
+    for (let i = 0; i < snake.length; i++) {
       if (snake[i].x === food.x && snake[i].y === food.y) {
         randFood();
         return;
       }
+    }
   }
 
   function setDir(dx: number, dy: number): void {
@@ -85,63 +105,74 @@ export function init(): void {
     ctx.clearRect(0, 0, c.width, c.height);
     ctx.fillStyle = 'rgba(26, 60, 26, 1)';
     ctx.fillRect(0, 0, c.width, c.height);
+
+    // Grid
     ctx.strokeStyle = 'rgba(76, 175, 80, 0.25)';
     ctx.lineWidth = 0.5;
     for (let i = 0; i <= COLS; i++) {
       ctx.beginPath();
-      ctx.moveTo(i * SZ, 0);
-      ctx.lineTo(i * SZ, c.height);
+      ctx.moveTo(i * sz, 0);
+      ctx.lineTo(i * sz, c.height);
       ctx.stroke();
       ctx.beginPath();
-      ctx.moveTo(0, i * SZ);
-      ctx.lineTo(c.width, i * SZ);
+      ctx.moveTo(0, i * sz);
+      ctx.lineTo(c.width, i * sz);
       ctx.stroke();
     }
+
+    // Food
     ctx.fillStyle = '#FF8F00';
     ctx.shadowColor = '#FF8F00';
-    ctx.shadowBlur = 12;
+    ctx.shadowBlur = 10;
     ctx.beginPath();
-    ctx.arc(food.x * SZ + SZ / 2, food.y * SZ + SZ / 2, SZ / 2 - 2, 0, Math.PI * 2);
+    ctx.arc(food.x * sz + sz / 2, food.y * sz + sz / 2, sz / 2 - 2, 0, Math.PI * 2);
     ctx.fill();
     ctx.shadowBlur = 0;
+
+    // Snake
     for (let i = 0; i < snake.length; i++) {
       const s = snake[i];
       if (i === 0) {
-        const cx = s.x * SZ + SZ / 2;
-        const cy = s.y * SZ + SZ / 2;
+        const cx = s.x * sz + sz / 2;
+        const cy = s.y * sz + sz / 2;
         ctx.fillStyle = '#FF8F00';
         ctx.shadowColor = '#FF8F00';
-        ctx.shadowBlur = 16;
+        ctx.shadowBlur = 14;
         ctx.beginPath();
-        ctx.arc(cx, cy, SZ / 2 - 2, 0, Math.PI * 2);
+        ctx.arc(cx, cy, sz / 2 - 2, 0, Math.PI * 2);
         ctx.fill();
         ctx.shadowBlur = 0;
+        // Eyes
+        const eyeR = Math.max(2, sz * 0.12);
+        const eyeOff = sz * 0.16;
         ctx.fillStyle = '#00C853';
         ctx.beginPath();
-        ctx.arc(cx - 4, cy - 5, 3, 0, Math.PI * 2);
+        ctx.arc(cx - eyeOff, cy - eyeOff, eyeR, 0, Math.PI * 2);
         ctx.fill();
         ctx.beginPath();
-        ctx.arc(cx + 4, cy - 5, 3, 0, Math.PI * 2);
+        ctx.arc(cx + eyeOff, cy - eyeOff, eyeR, 0, Math.PI * 2);
         ctx.fill();
       } else {
+        const pad = Math.max(2, Math.floor(sz * 0.12));
         ctx.fillStyle = i % 2 === 0 ? '#FFB300' : '#1a3c1a';
-        ctx.fillRect(s.x * SZ + 3, s.y * SZ + 3, SZ - 6, SZ - 6);
+        ctx.fillRect(s.x * sz + pad, s.y * sz + pad, sz - pad * 2, sz - pad * 2);
         ctx.strokeStyle = '#FF8F00';
         ctx.lineWidth = 0.8;
-        ctx.strokeRect(s.x * SZ + 3, s.y * SZ + 3, SZ - 6, SZ - 6);
+        ctx.strokeRect(s.x * sz + pad, s.y * sz + pad, sz - pad * 2, sz - pad * 2);
       }
     }
+
     if (over) {
       ctx.fillStyle = 'rgba(0,0,0,0.65)';
       ctx.fillRect(0, 0, c.width, c.height);
       ctx.fillStyle = '#FF8F00';
-      ctx.font = 'bold 24px system-ui';
+      ctx.font = `bold ${Math.max(14, sz)}px system-ui`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText('\u{1F4A5} GAME OVER', c.width / 2, c.height / 2 - 14);
+      ctx.fillText('\u{1F4A5} GAME OVER', c.width / 2, c.height / 2 - sz * 0.6);
       ctx.fillStyle = '#C8E6C9';
-      ctx.font = '16px system-ui';
-      ctx.fillText('Score: ' + score, c.width / 2, c.height / 2 + 16);
+      ctx.font = `${Math.max(11, Math.floor(sz * 0.65))}px system-ui`;
+      ctx.fillText('Score: ' + score, c.width / 2, c.height / 2 + sz * 0.6);
     }
   }
 
@@ -151,7 +182,7 @@ export function init(): void {
     try {
       const scores = await getTopScores(20);
       if (scores.length === 0) {
-        lbEntries.innerHTML = '<span class="lb-empty">No scores yet \u2014 be the first!</span>';
+        lbEntries.innerHTML = '<span class="lb-empty">No scores yet — be the first!</span>';
         return;
       }
       lbEntries.innerHTML = scores
@@ -216,13 +247,13 @@ export function init(): void {
     ctx.fillStyle = 'rgba(0,0,0,0.5)';
     ctx.fillRect(0, 0, c.width, c.height);
     ctx.fillStyle = '#FF8F00';
-    ctx.font = 'bold 22px system-ui';
+    ctx.font = `bold ${Math.max(14, Math.floor(sz * 0.88))}px system-ui`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('â–¶ Press Play', c.width / 2, c.height / 2);
+    ctx.fillText('▶ Press Play', c.width / 2, c.height / 2);
     ctx.fillStyle = '#81C784';
-    ctx.font = '12px system-ui';
-    ctx.fillText('Arrow keys Â· Swipe on mobile', c.width / 2, c.height / 2 + 26);
+    ctx.font = `${Math.max(10, Math.floor(sz * 0.5))}px system-ui`;
+    ctx.fillText('Arrow keys · Swipe on mobile', c.width / 2, c.height / 2 + sz);
   }
 
   function tick(): void {
