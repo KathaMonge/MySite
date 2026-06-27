@@ -30,13 +30,15 @@ export async function submitScore(name: string, score: number): Promise<void> {
     .from('leaderboard')
     .select('score')
     .eq('name', name)
-    .maybeSingle<ScoreRow>();
+    .maybeSingle();
 
-  if (existing !== null && existing.score >= score) return;
+  const existingScore = existing ? (existing as { score: number }).score : null;
+  if (existingScore !== null && existingScore >= score) return;
 
+  // supabase-js v2 without generated types requires this cast on upsert
   await supabase
     .from('leaderboard')
-    .upsert({ name, score }, { onConflict: 'name' });
+    .upsert({ name, score } as never, { onConflict: 'name' });
 }
 
 export async function getTopScores(limit = 20): Promise<ScoreRow[]> {
@@ -47,8 +49,7 @@ export async function getTopScores(limit = 20): Promise<ScoreRow[]> {
     .from('leaderboard')
     .select('name, score')
     .order('score', { ascending: false })
-    .limit(limit)
-    .returns<ScoreRow[]>();
+    .limit(limit);
 
-  return data ?? [];
+  return (data as ScoreRow[] | null) ?? [];
 }
