@@ -18,10 +18,10 @@ html {
   will-change: transform, opacity;
   background: linear-gradient(
     135deg,
-    #0a1f0a 0%,
-    #1a3a1a 30%,
-    #2d5a2d 60%,
-    #4CAF50 100%
+    #091808 0%,
+    #162f16 30%,
+    #234e23 60%,
+    #2e6e30 100%
   );
 }
 
@@ -55,7 +55,7 @@ html {
   right: 10%;
   width: 28px;
   height: 40px;
-  opacity: 0.5;
+  opacity: 0.25;
   --leaf-from: rotate(25deg) translateY(0);
   --leaf-to: rotate(25deg) translateY(-5px);
   animation: leaf-sway 7s ease-in-out infinite;
@@ -90,7 +90,7 @@ html {
   right: 12%;
   width: 24px;
   height: 34px;
-  opacity: 0.45;
+  opacity: 0.22;
   --leaf-from: rotate(35deg) scaleX(-1) translateY(0);
   --leaf-to: rotate(35deg) scaleX(-1) translateY(-5px);
   animation: leaf-sway 9s ease-in-out infinite;
