@@ -112,5 +112,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #bg-scanner { display: none; }
+  #bg-scanner,
+  #particles-canvas { display: none; }
 }

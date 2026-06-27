@@ -1,7 +1,7 @@
 /* ── Decorative leaves — one ambient note per section, not a forest ── */
 :root {
   --leaf-green: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 60'%3E%3Cpath d='M20 58 C8 42 2 22 20 2 C38 22 32 42 20 58Z' fill='%232E7D32'/%3E%3Cpath d='M20 58 L20 22' stroke='%232E7D32' stroke-width='1.2' fill='none'/%3E%3C/svg%3E");
-  --leaf-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2020/svg' viewBox='0 0 40 60'%3E%3Cpath d='M20 58 C8 42 2 22 20 2 C38 22 32 42 20 58Z' fill='%231A472A'/%3E%3Cpath d='M20 58 L20 22' stroke='%231A472A' stroke-width='1.2' fill='none'/%3E%3C/svg%3E");
+  --leaf-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 60'%3E%3Cpath d='M20 58 C8 42 2 22 20 2 C38 22 32 42 20 58Z' fill='%231A472A'/%3E%3Cpath d='M20 58 L20 22' stroke='%231A472A' stroke-width='1.2' fill='none'/%3E%3C/svg%3E");
 }
 
 @keyframes leaf-sway {

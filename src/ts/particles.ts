@@ -24,6 +24,7 @@ const REPEL_DIST = 110;
 const REPEL_DIST_SQ = REPEL_DIST * REPEL_DIST;
 
 export function init(): void {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const c = document.getElementById('particles-canvas') as HTMLCanvasElement;
   if (!c) return;
   const ctx = c.getContext('2d')!;
