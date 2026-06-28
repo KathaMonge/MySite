@@ -10,7 +10,6 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform, opacity;
   background: linear-gradient(
     135deg,
@@ -55,6 +54,7 @@
   --leaf-from: rotate(25deg) translateY(0);
   --leaf-to: rotate(25deg) translateY(-5px);
   animation: leaf-sway 7s ease-in-out infinite;
+  will-change: transform;
 }
 
 .hero-leaf--top-left {
@@ -67,6 +67,7 @@
   --leaf-to: rotate(-30deg) scaleX(-1) translateY(-4px);
   animation: leaf-sway 8s ease-in-out infinite;
   animation-delay: -2s;
+  will-change: transform;
 }
 
 .hero-leaf--mid {
@@ -79,6 +80,7 @@
   --leaf-to: rotate(-10deg) translateY(-4px);
   animation: leaf-sway 6s ease-in-out infinite;
   animation-delay: -3s;
+  will-change: transform;
 }
 
 .hero-leaf--bottom {
@@ -91,6 +93,7 @@
   --leaf-to: rotate(35deg) scaleX(-1) translateY(-5px);
   animation: leaf-sway 9s ease-in-out infinite;
   animation-delay: -1.5s;
+  will-change: transform;
 }
 
 #hero::after {

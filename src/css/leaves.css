@@ -27,6 +27,7 @@
   --leaf-from: rotate(12deg) translateY(0);
   --leaf-to: rotate(16deg) translateY(-4px);
   animation: leaf-sway 9s ease-in-out infinite;
+  will-change: transform;
 }
 
 /* Single ambient leaf: even sections top-left */
@@ -48,6 +49,7 @@
   --leaf-to: rotate(-18deg) scaleX(-1) translateY(-4px);
   animation: leaf-sway 11s ease-in-out infinite;
   animation-delay: -3s;
+  will-change: transform;
 }
 
 /* No ::after leaves, no card leaves, no .mx-auto leaves */

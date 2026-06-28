@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Katha — Mechatronics Engineering student at TEC Costa Rica. Hardware × software — circuits, code, control systems, and strawberries 🍓"
+      content="Katha Monge — Mechatronics Engineering student at TEC Costa Rica. Building at the intersection of hardware and software: embedded systems, robotics, control systems, and circuits. Portfolio of engineering projects."
     />
-    <title>Katha · Mechatronics Portfolio</title>
+    <title>Katha Monge · Mechatronics Engineering Portfolio</title>
     <meta name="author" content="Katha Monge" />
+    <meta name="keywords" content="mechatronics, engineering, robotics, embedded systems, control systems, circuits, hardware, software, TEC Costa Rica, portfolio, Python, C++, MATLAB" />
+    <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#0D2E12" />
 
     <link rel="canonical" href="https://kathamonge.github.io/MySite/" />
@@ -19,21 +21,26 @@
     />
 
     <!-- Open Graph / Social -->
-    <meta property="og:title" content="Katha · Mechatronics Portfolio" />
+    <meta property="og:title" content="Katha Monge · Mechatronics Engineering Portfolio" />
     <meta
       property="og:description"
-      content="Mechatronics Engineering student at TEC Costa Rica. Hardware × software — circuits, code, control systems, and strawberries 🍓"
+      content="Mechatronics Engineering student at TEC Costa Rica. Embedded systems, robotics, control systems, and hardware-software integration."
     />
     <meta property="og:url" content="https://kathamonge.github.io/MySite/" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://github.com/KathaMonge.png" />
+    <meta property="og:image:alt" content="Katha Monge — Mechatronics Engineering student" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Katha Monge Portfolio" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Katha · Mechatronics Portfolio" />
+    <meta name="twitter:creator" content="@KathaMonge" />
+    <meta name="twitter:title" content="Katha Monge · Mechatronics Engineering Portfolio" />
     <meta
       name="twitter:description"
-      content="Mechatronics Engineering student at TEC Costa Rica. Hardware × software."
+      content="Mechatronics Engineering student at TEC Costa Rica. Embedded systems, robotics, and hardware-software integration."
     />
     <meta name="twitter:image" content="https://github.com/KathaMonge.png" />
+    <meta name="twitter:image:alt" content="Katha Monge — Mechatronics Engineering student" />
 
     <link rel="manifest" href="manifest.json" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
@@ -50,11 +57,32 @@
         "@type": "Person",
         "name": "Katha Monge",
         "givenName": "Katha",
+        "familyName": "Monge",
         "jobTitle": "Mechatronics Engineering Student",
         "url": "https://kathamonge.github.io/MySite/",
-        "sameAs": ["https://github.com/KathaMonge", "https://linkedin.com/in/katharinamonge"],
-        "alumniOf": "TEC Costa Rica",
-        "description": "Mechatronics Engineering student at TEC Costa Rica. Hardware × software — circuits, code, and control systems."
+        "image": "https://github.com/KathaMonge.png",
+        "sameAs": [
+          "https://github.com/KathaMonge",
+          "https://linkedin.com/in/katharinamonge"
+        ],
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Instituto Tecnológico de Costa Rica",
+          "alternateName": "TEC Costa Rica",
+          "url": "https://www.tec.ac.cr"
+        },
+        "knowsAbout": [
+          "Mechatronics Engineering",
+          "Embedded Systems",
+          "Robotics",
+          "Control Systems",
+          "Python",
+          "C++",
+          "MATLAB",
+          "Hardware Design",
+          "Software Development"
+        ],
+        "description": "Mechatronics Engineering student at TEC Costa Rica specializing in embedded systems, robotics, and control systems."
       }
     </script>
   </head>
@@ -101,8 +129,6 @@
             <span class="prompt">$</span> whoami
             <span class="output">→ katha@mechatronics:~/portfolio</span>
           </div>
-
-          <p class="hero-subtitle"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 18'%3E%3Crect width='30' height='18' fill='%230028b4'/%3E%3Crect y='3' width='30' height='3' fill='%23fff'/%3E%3Crect y='6' width='30' height='6' fill='%23ce1126'/%3E%3Crect y='12' width='30' height='3' fill='%23fff'/%3E%3C/svg%3E" alt="Costa Rica flag" style="height:1.15em;vertical-align:middle;filter:drop-shadow(0 1px 6px rgba(0,0,0,0.4))"> TEC · Costa Rica</p>
 
           <p class="hero-tagline">MECHATRONICS · CODE · NATURE</p>
 
@@ -420,9 +446,9 @@
       <div class="mx-auto center-text" style="max-width: 620px">
         <p class="footer-credit">
           <span class="footer-prompt">❯</span>
-          <span class="footer-line"><strong>KathaMonge</strong> © <span id="footer-year"></span></span>
+          <span class="footer-line"><strong>KathaMonge</strong> © <span id="footer-year"></span> <span class="footer-muted">— built with</span> <a href="https://desvosoft.github.io/Vitra/" target="_blank" rel="noopener" class="footer-vitra">Vitra CSS</a><span class="footer-cursor">▎</span></span>
         </p>
-        <div class="footer-links">
+        <div class="footer-links" style="margin-top: 0.6rem">
           <a href="mailto:katharinamonge28@gmail.com" data-vitra-tooltip="Send an email" data-vitra-tooltip-position="top"
             ><img
               src="https://img.shields.io/badge/Email-FF4365?style=flat-square&logo=gmail&logoColor=white"
@@ -439,10 +465,6 @@
               alt="LinkedIn"
           /></a>
         </div>
-        <p class="footer-credit" style="margin-top: 0.6rem">
-          <span class="footer-prompt">❯</span>
-          <span class="footer-line"><span class="footer-str">"MECHATRONICS · CODE · NATURE"</span> <span class="footer-muted">— built with</span> <a href="https://desvosoft.github.io/Vitra/" target="_blank" rel="noopener" class="footer-vitra">Vitra CSS</a><span class="footer-cursor">▎</span></span>
-        </p>
       </div>
     </footer>
     <button

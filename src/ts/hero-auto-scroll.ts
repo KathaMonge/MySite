@@ -23,5 +23,5 @@ export function init(): void {
       hero.style.opacity = (1 - progress).toString();
       hero.style.pointerEvents = progress < 0.05 ? 'auto' : 'none';
     });
-  });
+  }, { passive: true });
 }

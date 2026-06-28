@@ -242,8 +242,3 @@
 .led-border {
   animation: borderGlow 4s ease-in-out infinite;
 }
-
-@keyframes borderGlow {
-  0%, 100% { border-color: var(--glass-border); }
-  50% { border-color: rgba(46, 125, 50, 0.5); }
-}
